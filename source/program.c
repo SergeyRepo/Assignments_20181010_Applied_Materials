@@ -28,14 +28,10 @@
  *	see <https://www.gnu.org/licenses/>.
  */
 
-#include <time.h>
-
 #include "list.h"
 #include "parity.h"
 
 int main( void) {
-	srand( time( 0ULL));
-	unsigned long i;
 
 	printf( "\nTesting problem (A)\n\t\
 Assuming an unsorted linked list of integers, and \n\
@@ -111,48 +107,24 @@ to by the pointer char *buf. Write a routine to compute \n\
 and set the parity bit of the characters and output the \n\
 characters in hex form.\n\n");
 
-	static const unsigned long CHAR_LENGTH = 25ULL;
-	static const unsigned long UCHAR_RANGE = UCHAR_MAX;
+	char continueProgram = '\x01';
 
-	char *newBuffer;
-	if ( !( newBuffer = ( char*) malloc( 
-		CHAR_LENGTH * sizeof( char)))) {
-		return ~0LL;
-	}
-	
-	for ( i = 0ULL; i < CHAR_LENGTH; ++i) {
-		newBuffer[ i] = rand() % UCHAR_RANGE;
-	}
-	printf( "\tTest B0: \n");
-	setParityPrint( &newBuffer, CHAR_LENGTH);
-	free( newBuffer);
-	newBuffer = NULL;
+	while ( continueProgram) {
+		continueProgram = '\x01';
+		setParityPrint();
 
-	if ( !( newBuffer = ( char*) malloc( 
-		CHAR_LENGTH * sizeof( char)))) {
-		return ~0LL;
-	}
+		while ( continueProgram != 'n' 
+			&& continueProgram != 'y') {
+			printf( "Would you like to continue? \
+Type y or n.\n");
+			continueProgram = getchar();
+			while ( getchar() != '\n');
+		}
 
-	for ( i = 0ULL; i < CHAR_LENGTH; ++i) {
-		newBuffer[ i] = rand() % UCHAR_RANGE;
+		if ( continueProgram == 'n') {
+			continueProgram = '\x00';
+		}
 	}
-	printf( "\tTest B1: \n");
-	setParityPrint( &newBuffer, CHAR_LENGTH);
-	free( newBuffer);
-	newBuffer = NULL;
-
-	if ( !( newBuffer = ( char*) malloc( 
-		CHAR_LENGTH * sizeof( char)))) {
-		return ~0LL;
-	}
-
-	for ( i = 0ULL; i < CHAR_LENGTH; ++i) {
-		newBuffer[ i] = rand() % UCHAR_RANGE;
-	}
-	printf( "\tTest B2: \n");
-	setParityPrint( &newBuffer, CHAR_LENGTH);
-	free( newBuffer);
-	newBuffer = NULL;
 
 	return 0LL;
 } 

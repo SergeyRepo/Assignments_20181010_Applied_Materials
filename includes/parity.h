@@ -1,9 +1,10 @@
 /*
- *	This set_parity_print header  
+ *	This set_parity_print header 
  *	defines a routine designed to 
  *	compute and to set the parity 
  *	bit for a string of 
- *	characters, then output these 
+ *	characters from the standard 
+ *	input, then output these 
  *	characters to the standard 
  *	output in hexadecimal form.
  *	Copyright (C) 1989-2089 Sergey Sergeevich Tsybanov 
@@ -41,7 +42,6 @@
 
 #ifndef PARITY_H
 
-#include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -50,20 +50,16 @@
 /*
  *	The function setParityPrint first 
  *	computes and sets the parity bit 
- *	for the set of characters in the 
- *	buffer and prints the resulting 
+ *	for the set of characters from 
+ *	the standard input in the buffer 
+ *	and prints the resulting 
  *	characters in hexadecimal form. 
- *	The function takes a character 
- *	pointer to a constant address of 
- *	a character pointer and a 
- *	constant unsigned long as 
+ *	The function does not take any 
  *	arguments. The function returns 
  *	the character '\x00' on failure. 
  *	The function returns the 
  *	character '\x01' on success.
- *	 
  */
-char setParityPrint( char **const buf, 
-			const unsigned long length);
+char setParityPrint( void);
 
 #endif
